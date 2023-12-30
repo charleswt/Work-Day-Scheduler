@@ -39,7 +39,7 @@ $(document).ready(function () {
         $textarea.addClass('present');
       } else if (blockHour > currentHour){
         $textarea.addClass('future');
-      }
+      } 
     });
   
     // TODO: Add code to get any user input that was saved in localStorage and set
@@ -52,7 +52,9 @@ $(document).ready(function () {
         
       if (storedUserInput !== null) {
         $(this).children('.description').val(storedUserInput);
-      } 
+      } else if (currentHour >= 18){
+        clear(storedUserInput);
+      }
     });
   
     // TODO: Add code to display the current date in the header of the page.
