@@ -13,11 +13,11 @@ $(document).ready(function () {
   
     $(".saveBtn").on('click', function () {
       // "this" refers to the clicked button.
-      const userInput = $(this).siblings('.description').val(); // Extract user input
+      const descriptionInput = $(this).siblings('.description').val(); // Extract user input
       const timeBlockId = $(this).closest('.time-block').attr('id'); // Find time-block id
   
       // Use time-block id as key to save user input in local storage
-      localStorage.setItem(timeBlockId, userInput);
+      localStorage.setItem(timeBlockId, descriptionInput);
     });
   
   // TODO: Add code to apply the past, present, or future class to each time
@@ -31,14 +31,14 @@ $(document).ready(function () {
   
     $(".time-block").each(function () {
       const blockHour = parseInt($(this).attr('id').split('-')[1]); // Extract hour from the id
-      const $textarea = $(this).children(".description");
+      const textarea = $(this).children(".description");
   
       if (blockHour < currentHour) {
-        $textarea.addClass('past');
+        textarea.addClass('past');
       } else if (blockHour == currentHour) {
-        $textarea.addClass('present');
-      } else if (blockHour > currentHour){
-        $textarea.addClass('future');
+        textarea.addClass('present');
+      } else {
+        textarea.addClass('future');
       } 
     });
   
@@ -48,23 +48,23 @@ $(document).ready(function () {
   
     $(".time-block").each(function () {
       const blockId = $(this).attr('id');
-      const storedUserInput = localStorage.getItem(blockId);
+      const saveUserInput = localStorage.getItem(blockId);
         
-      if (storedUserInput !== null) {
-        $(this).children('.description').val(storedUserInput);
+      if (saveUserInput !== null) {
+        $(this).children('.description').val(saveUserInput);
       } else if (currentHour >= 18){
-        clear(storedUserInput);
+        clear(saveUserInput);
       }
     });
   
     // TODO: Add code to display the current date in the header of the page.
   
-    const currentYearDisplay = $('#year');
-    currentYearDisplay.text(dayjs().format('YYYY'));
-    const currentDateDisplay = $('#date');
-    currentDateDisplay.text(dayjs().format('dddd, MMMM D YYYY'));
-    const currentTimeDisplay = $('#time');
-    currentTimeDisplay.text(dayjs().format('h:mm:ss a'));
-    updateTime = () => {currentTimeDisplay.text(dayjs().format('h:mm:ss a'));}
+    const yearDisplay = $('#year');
+    yearDisplay.text(dayjs().format('YYYY'));
+    const dateDisplay = $('#date');
+    dateDisplay.text(dayjs().format('dddd, MMMM D YYYY'));
+    const timeDisplay = $('#time');
+    timeDisplay.text(dayjs().format('h:mm:ss a'));
+    updateTime = () => {timeDisplay.text(dayjs().format('h:mm:ss a'));}
     setInterval(updateTime, 1000);
   });
