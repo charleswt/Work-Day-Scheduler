@@ -56,7 +56,7 @@ This project was developed by [Charles Tiffany](https://github.com/charleswt/).
 
 ## Screenshot
 
-![screenshot](./Assets/img.gif)
+![screenshot](./Assets/sc.png)
 
 ## License
 

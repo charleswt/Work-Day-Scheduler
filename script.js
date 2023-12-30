@@ -52,8 +52,8 @@ $(document).ready(function () {
         
       if (storedUserInput !== null) {
         $(this).children('.description').val(storedUserInput);
-      }
-});
+      } 
+    });
   
     // TODO: Add code to display the current date in the header of the page.
   
